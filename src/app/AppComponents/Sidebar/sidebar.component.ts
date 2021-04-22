@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
 		}, 500);
 	}
 
-	ngOnInit() {
+	ngOnInit() {  
 		try {
 			this.authService.shairedData.subscribe((res:any) => {
 				if(res){

@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
             <mat-icon>info</mat-icon>
           </button>
         </mat-list-item>
-      </mat-nav-list>
+      </mat-nav-list> 
     </mat-menu>
   `,
 })

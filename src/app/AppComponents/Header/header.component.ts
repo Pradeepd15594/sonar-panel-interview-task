@@ -22,7 +22,7 @@ import {AuthService} from '../../AppServices/auth.service';
 export class HeaderComponent implements OnInit {
   @Input() showToggle = true;
   @Input() showBranding = false;
-
+ 
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleSidenavNotice = new EventEmitter<void>();
 

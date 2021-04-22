@@ -43,7 +43,7 @@ export class UserWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     
-  }
+  } 
 
   openProfile(){
     sessionStorage.setItem(`userProfile`, localStorage.getItem(env.authDB))
