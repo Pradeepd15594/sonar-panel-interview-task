@@ -1,3 +1,6 @@
-export const environment = {
-  production: true
+export const env = {
+  production: true,
+  baseUrl:``,
+  Registration:`@registration`,
+  authDB:`@userSession`,
 };

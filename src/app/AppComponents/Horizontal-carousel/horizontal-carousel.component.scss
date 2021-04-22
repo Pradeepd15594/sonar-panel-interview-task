@@ -1,0 +1,72 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 70px auto 80px;
+    padding: 2px;
+
+    .grid-item {
+        text-align: center;
+        overflow: hidden;
+        &.overflow-hide{overflow: hidden;}
+        &[rigth]{margin-left:5px;}
+        &:first-child, &:last-child{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [mat-mini-fab]{
+            mat-icon{
+                font-size: 26px;
+                height: 30px;
+                width: 30px;
+            }
+        }
+
+        .custom-slider-main{
+            display: flex;
+            overflow: hidden;    
+            scroll-behavior: smooth;
+            float: left;
+            width: 100%;
+
+            [card-item]{
+                width: 190px;
+                height: 150px;
+                margin: 10px 10px 10px 10px;
+                display: inline-table;
+                padding: 15px 0 0 0px;
+                overflow: hidden;
+                cursor: pointer;
+                // float: left;
+                &:hover [cat-name]{ color: #FFF; background: var(--primary);}
+                &:hover [img-group] { 
+                    img{
+                        -webkit-transform: scale(1.17);
+	                    transform: scale(1.17);
+                    }
+                }
+                [img-group]{
+                    height: 120px;
+                    img{
+                        width: 85%;
+                        height: 110px;
+                        align-self: center;
+                        margin-top: -5px;
+                        -webkit-transform: scale(1);
+                        transform: scale(1);
+                        -webkit-transition: .3s ease-in-out;
+                        transition: .3s ease-in-out;
+                    }
+                }
+                [cat-name]{
+                    height: 35px;
+                    background: #f2f2f2;
+                    color: var(--black);
+                    line-height: 35px;
+                    font-family: Roboto-Medium;
+                }
+                
+            }
+        }
+    }
+} 
