@@ -1,7 +1,0 @@
-<div [@dialog] *ngIf="visible" dialog>
-	<ng-content></ng-content>
-	<button *ngIf="closable" mat-icon-button close-btn (click)="close()" color="primary">
-        <mat-icon>close</mat-icon>
-    </button>
-</div>
-<div *ngIf="visible" overlay (click)="close()"></div>
