@@ -1,0 +1,31 @@
+<main no-padding>
+    <section page-header>
+        <div class="row">
+            <div class="col-md-4 col-lg-12 col-xs-12 col-12">
+               <h4> Personal Profile</h4>
+            </div>
+            <div class="col-md-4 col-lg-12 col-xs-12 col-12"></div>
+            <div class="col-md-4 col-lg-12 col-xs-12 col-12"></div>
+        </div>
+    </section>
+
+    <section [style.padding.px]="15">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <mat-card class="d-flex">
+                    <img width="150px" src="../../../assets/images/profileUser.jpg" />
+                    <mat-card-content [style.padding.px]="15">
+                        <div>Name: {{userProfile?.name}}</div>
+                        <div>Email: {{userProfile?.email}}</div>
+                        <div>Mobile: {{userProfile?.mobile}}</div>
+                        <div>Role: {{userProfile?.userType}}</div>
+                        <div>Created Date: {{userProfile?.createdDate | date:'dd-MM-yyyy'}}</div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+</main>

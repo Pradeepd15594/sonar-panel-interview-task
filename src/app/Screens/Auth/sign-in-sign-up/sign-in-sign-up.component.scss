@@ -1,0 +1,87 @@
+#login {
+    background: var(--primary);
+    height: 100% !important;
+    background-image: url(./../../../../assets/images/loginBg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    #login_box{
+        width: 100%;
+    }
+}
+
+.login_icon {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+mat-form-field{
+    width: 100%;
+}
+
+
+#login_box, #sinUp_box{
+    .card_box{
+        background: #fff;
+        margin: 0% auto 0;
+        padding: 25px;
+        text-align: center;
+        border-radius: 15px;
+        min-height: 450px;
+    }
+}
+
+[icon-input-group]{
+    line-height: 45px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    span{
+        width: 50px;
+    }
+    input{
+        border: none;
+        background:#fff;
+        outline:none;
+        border-radius: unset;
+
+        &:focus{
+            outline:none;
+            box-shadow:none;
+        }
+    }
+}
+
+.reset-password{
+    color: var(--primary);
+    a{letter-spacing:1px;font-size: 16px;}
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    border-color: var(--primary);
+    outline:none;
+    margin-top: 20px;
+    width: 100%;
+    height:43px;
+    box-shadow:0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%)
+}
+
+.sign-up-link{
+    font-size: 14px;
+    font-family:Roboto-Regular;
+    b{
+        font-size: 16px;
+        font-family:Roboto-Medium;
+        color: var(--primary);
+    }
+}
+
+mat-error {
+    font-size: 12px;
+}

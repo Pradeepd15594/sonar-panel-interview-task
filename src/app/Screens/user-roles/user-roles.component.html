@@ -1,0 +1,53 @@
+<main>
+    <div class="row">
+        <div class="col-4">User Roles</div>
+        <div class="col-4"></div>
+    </div>
+    <br>
+
+    <mat-card>
+        <div class="table-responsive orders_table">
+            <div [style.text-align]="'center'">
+                <mat-form-field [style.font-size.px]="13" appearance="outline">
+                    <mat-label>Select User Type</mat-label>
+                    <mat-select [(ngModel)]="userType" (ngModelChange)="onChange($event)">
+                        <mat-option value="Teacher">Teacher</mat-option>
+                        <mat-option value="Student">Student</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>    
+            
+            <div *ngIf="userType!=''">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Manage Users</td>
+                            <td><mat-checkbox [(ngModel)]="manageUsers.view" value="true" [checked]="true">View</mat-checkbox></td>
+                            <td><mat-checkbox [(ngModel)]="manageUsers.add">Add</mat-checkbox></td>
+                            <td><mat-checkbox [(ngModel)]="manageUsers.edit">Edit</mat-checkbox></td>
+                        </tr>
+                       
+                        <tr>
+                            <td colspan="2">User Roles</td>
+                            <td><mat-checkbox [(ngModel)]="userRoles.view">View</mat-checkbox></td>
+                            <td><mat-checkbox [(ngModel)]="userRoles.add">Add</mat-checkbox></td>
+                            <td><mat-checkbox [(ngModel)]="userRoles.edit">Edit</mat-checkbox></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div [style.text-align]="'center'">
+                    <button mat-raised-button color="primary" (click)="submitRole()" class="btn btn-default done">Save Roles</button>
+                </div>
+            </div>
+            
+
+
+    
+            
+        </div>
+
+        
+    </mat-card>
+
+    
+</main>

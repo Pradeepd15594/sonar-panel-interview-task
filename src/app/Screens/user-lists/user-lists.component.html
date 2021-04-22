@@ -1,0 +1,125 @@
+<main>
+    <div class="row">
+        <div class="col-4">User Lists</div>
+        <div class="col-4"></div>
+        <div class="col-4 text-right">
+            <button color="primary" (click)="showDialog=!showDialog" mat-raised-button>Add Users</button>
+        </div>
+    </div>
+    <br>
+
+    <mat-card>
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Password</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr pointer *ngFor="let v of userListArray;let i=index" (click)="openProfile(v)">
+                            <td>{{(i+1)}}</td>
+                            <td>{{v?.name}}</td>
+                            <td>{{v?.email}}</td>
+                            <td>{{v?.mobile}}</td>
+                            <td>{{v?.password}}</td>
+                            <td>{{v?.userType}}</td>
+                            <td>
+                                <button mat-icon-button (click)="edit(v,i)" ><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button *ngIf="v?.userType!='Admin' " (click)="deleteUser(i)" color="warn" ><mat-icon>delete</mat-icon></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-card>
+
+
+      <popup [(visible)]="showDialog" [closable]="false">
+          <div class="container">
+                <form method="post" [formGroup]="userForm" (ngSubmit)="onSubmit()" signUp-form autocomplete="off">
+                
+                    <div class="row" [style.margin-top.px]="40">
+                        <div class="col-md-4">
+                            <mat-form-field [style.font-size.px]="13" appearance="outline">
+                                <mat-label>Full Name*</mat-label>
+                                <input formControlName="name" matInput placeholder="Full Name">
+                                <mat-icon matPrefix>users</mat-icon>
+        
+                                <mat-error *ngIf="userForm.controls['name'].status=='INVALID' && (userForm.controls['name'].dirty || userForm.controls['name'].touched)">
+                                    <mat-error *ngIf="userForm.controls['name'].errors.required">This Field is required.</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field [style.font-size.px]="13" appearance="outline">
+                                <mat-label>Email*</mat-label>
+                                <input formControlName="email" matInput placeholder="Email">
+                                <mat-icon matPrefix>email</mat-icon>
+        
+                                <mat-error *ngIf="userForm.controls['email'].status=='INVALID' && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+                                    <mat-error *ngIf="userForm.controls['email'].errors.required">This Field is required.</mat-error>
+                                    <mat-error *ngIf="userForm.controls['email'].errors && !userForm.controls['email'].errors.required">Email must be a valid email address</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field [style.font-size.px]="13" appearance="outline">
+                                <mat-label>Mobile*</mat-label>
+                                <input NumbersOnly maxlength="10" [allowDecimals]="false" [allowSign]="true" formControlName="mobile" matInput placeholder="Email">
+                                <mat-icon matPrefix>phone</mat-icon>
+        
+                                <mat-error *ngIf="userForm.controls['mobile'].invalid && (userForm.controls['mobile'].dirty || userForm.controls['mobile'].touched)" class="form-field-error">
+        
+                                    <mat-error *ngIf="userForm.controls['mobile'].errors.required"> Mobile Field is required.</mat-error>
+                                    <mat-error *ngIf="userForm.controls['mobile'].errors.minlength && !userForm.controls['mobile'].errors.required">Mobile must be at least 10 digit</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field [style.font-size.px]="13" appearance="outline">
+                                <mat-label>Password*</mat-label>
+                                <input matInput formControlName="password" placeholder="Full Name">
+                                <mat-icon [style.color]="'var(--primary)'" matPrefix>lock</mat-icon>
+                                <mat-error *ngIf="userForm.controls['password'].status=='INVALID' && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
+                                    <mat-error *ngIf="userForm.controls['password'].errors.required">This Field is required.</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+        
+                        <div class="col-md-4">
+                            <mat-form-field [style.font-size.px]="13" appearance="outline">
+                                <mat-label>User Type*</mat-label>
+                                <mat-select formControlName="userType">
+                                    <mat-option value="">Select User Type</mat-option>
+                                    <mat-option value="Teacher">Teacher</mat-option>
+                                    <mat-option value="Student">Student</mat-option>
+                                </mat-select>
+                                <mat-icon [style.color]="'var(--primary)'" matPrefix>account_tree</mat-icon>
+                                <mat-error *ngIf="userForm.controls['userType'].status=='INVALID' && (userForm.controls['userType'].dirty || userForm.controls['userType'].touched)">
+                                    <mat-error *ngIf="userForm.controls['userType'].errors.required">This Field is required.</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12"><p style="color: #f00;">{{errorMessage}}</p></div>
+                        <div class="col-md-12 text-center">
+                            <button mat-raised-button (click)="showDialog = !showDialog">Cancel</button>
+                            <button mat-raised-button [style.margin-left.px]="20" color="primary">Add Users</button>
+                        </div>
+                    </div>
+                </form>
+          </div>
+        
+
+        
+        
+    </popup>
+</main>

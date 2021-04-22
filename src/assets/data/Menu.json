@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "name": "Dashboard",
+      "route": "/dashboard",
+      "type": "link",
+      "iconSvg": "dashboard-icon"
+    },
+    {
+      "name": "User List",
+      "route": "user-lists",
+      "type": "sub",
+      "icon": "product-icon",
+      "children": [
+        {
+          "name": "User Lists",
+          "route": "user-lists",
+          "type": "link"
+        },
+        {
+          "name": "User Roles",
+          "route": "user-roles",
+          "type": "link"
+        }
+      ]
+    }
+  ]
+}
