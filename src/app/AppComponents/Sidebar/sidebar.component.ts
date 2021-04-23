@@ -27,10 +27,10 @@ export class SidebarComponent implements OnInit {
 		}, 500);
 	}
 
-	ngOnInit() {  
+	ngOnInit() {
 		try {
 			this.authService.shairedData.subscribe((res:any) => {
-				if(res){
+				if(res.Type===`ADMIN_ROLE_BASED` || res.Type===`STUDENT_ROLE_BASED` || res.Type===`TEACHER_ROLE_BASED`){
 					this.roleBased=res.data;
 				}
 			})

@@ -27,13 +27,11 @@ export class AppComponent {
     setInterval(()=>{
       let authdata:any=JSON.parse(localStorage.getItem(env.authDB));
       let userRoles:any=JSON.parse(localStorage.getItem('@userRoles'));
-      if(authdata.userType=='Student'){
-        console.log('S');
-        
-        that.authService.newSharedData(userRoles.student, 'STUDENT_ROLE_BASED');
-        }else if(authdata.userType=='Teacher'){  console.log('T');
+        if(authdata?.userType=='Student'){
+          that.authService.newSharedData(userRoles.student, 'STUDENT_ROLE_BASED');
+        }else if(authdata?.userType=='Teacher'){
           that.authService.newSharedData(userRoles.teacher, 'TEACHER_ROLE_BASED');
-        }else if(authdata.userType=='Admin'){
+        }else if(authdata?.userType=='Admin'){
           that.authService.newSharedData(userRoles.admin, 'ADMIN_ROLE_BASED');
         }
         

@@ -14,18 +14,18 @@
               <span icon-menu>
                 <img src="../../assets/images/home.png" />
               </span>
-              <span>Users</span>
+              <span>Users Module</span>
               <span><mat-icon>expand_more</mat-icon></span>
           </div>
         </mat-expansion-panel-header>
-        
-        <a *ngIf="roleBased?.manageUsers?.view" [routerLink]="['/user-lists']" mat-list-item>
-          <img menu-icon style="width: 20px;height: 20px" src="../../assets/images/user.png">
-          <div menu-name>User Lists</div>
-        </a>
         <a *ngIf="roleBased?.userRoles?.view" [routerLink]="['/user-roles']" mat-list-item>
           <img menu-icon style="width: 20px;height: 20px" src="../../assets/images/user.png">
           <div menu-name>User Roles</div>
+        </a>
+
+        <a *ngIf="roleBased?.manageUsers?.view" [routerLink]="['/user-lists']" mat-list-item>
+          <img menu-icon style="width: 20px;height: 20px" src="../../assets/images/user.png">
+          <div menu-name>User Lists</div>
         </a>
 
       </mat-expansion-panel>
