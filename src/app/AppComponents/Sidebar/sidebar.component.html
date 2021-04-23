@@ -1,0 +1,61 @@
+<mat-nav-list class="menu-groups" [ngClass]="varient ? 'menu-groups-mini-varient' : 'menu-groups-full-varient'">
+
+  <mat-accordion class="example-headers-align">
+      <mat-list-item  mat-list-link-item [routerLink]="['/dashboard']">
+        <span icon-menu>
+          <img src="../../assets/images/home.png" />
+        </span>
+        <span route-name>Dashboard</span>
+      </mat-list-item>
+
+      <mat-expansion-panel *ngIf="roleBased?.manageUsers?.view || roleBased?.userRoles?.view" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+          <div menu-container-grid>
+              <span icon-menu>
+                <img src="../../assets/images/home.png" />
+              </span>
+              <span>Users Module</span>
+              <span><mat-icon>expand_more</mat-icon></span>
+          </div>
+        </mat-expansion-panel-header>
+        <a *ngIf="roleBased?.userRoles?.view" [routerLink]="['/user-roles']" mat-list-item>
+          <img menu-icon style="width: 20px;height: 20px" src="../../assets/images/user.png">
+          <div menu-name>User Roles</div>
+        </a>
+
+        <a *ngIf="roleBased?.manageUsers?.view" [routerLink]="['/user-lists']" mat-list-item>
+          <img menu-icon style="width: 20px;height: 20px" src="../../assets/images/user.png">
+          <div menu-name>User Lists</div>
+        </a>
+
+      </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>
+  <!-- <mat-accordion class="example-headers-align">
+    <ng-template ngFor let-menu  [ngForOf]="menuList" let-i="index">
+      <mat-list-item *ngIf="menu.type==='link'" mat-list-link-item [routerLink]="['/'+menu.route]">
+        <span icon-menu>
+          <img src="../../assets/images/home.png" />
+        </span>
+        <span route-name>{{menu.name}}</span>
+      </mat-list-item>
+
+      <mat-expansion-panel *ngIf="menu?.type==='sub' && menu?.authorized" (opened)="setStep(i)" hideToggle>
+        <mat-expansion-panel-header>
+          <div menu-container-grid>
+              <span icon-menu>
+                <img src="../../assets/images/home.png" />
+              </span>
+              <span>{{menu.name}}</span>
+              <span><mat-icon>expand_more</mat-icon></span>
+          </div>
+        </mat-expansion-panel-header>
+        
+        <a *ngFor="let submenu of menu?.children" [routerLink]="['/'+submenu.route]" mat-list-item>
+          <img menu-icon style="width: 20px;height: 20px" src="../../assets/images/user.png">
+          <div menu-name>{{submenu?.name}}</div>
+        </a>
+      </mat-expansion-panel>
+    </ng-template>
+  </mat-accordion>
+</mat-nav-list> -->

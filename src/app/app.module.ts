@@ -12,18 +12,11 @@ import { FooterComponent } from './AppComponents/Footer/footer.component';
 import { SidebarComponent } from './AppComponents/Sidebar/sidebar.component';
 import { UserWidgetComponent } from './AppComponents/Widgets/user.component';
 import { NotificationComponent } from './AppComponents/Widgets/notification.component';
-import { Heading } from './AppComponents/Heading/Heading';
-import { HorizontalCarouselComponent } from './AppComponents/horizontal-carousel/horizontal-carousel.component';
-import { ProductGalleryComponent } from './AppComponents/Product-gallery/product-gallery.component';
-import { Svgicon } from './AppComponents/SVGIcon/SvgIcon';
 import { BackNavigation } from './AppComponents/Back-navigation/BackNavigation';
 import {Screen404Component} from './Screens/screen404/screen404.component'; 
-import { DragDropDirective } from './AppComponents/Drag-drop/drag-drop.directive';
-import { DragDropsComponent } from './AppComponents/Drag-drops/drag-drops.component';
 const APP_COMPONENTS=[
-  HeaderComponent, FooterComponent, SidebarComponent, UserWidgetComponent, NotificationComponent, 
-  HorizontalCarouselComponent, Heading, ProductGalleryComponent, Svgicon,
-  BackNavigation,DragDropsComponent
+  HeaderComponent, FooterComponent, SidebarComponent, UserWidgetComponent, NotificationComponent,
+  BackNavigation
 ]
 
 /**@AUTHENTICATION_COMPONENTS */
@@ -39,7 +32,7 @@ import { SignInSignUpModule } from './Screens/Auth/sign-in-sign-up/sign-in-sign-
     HeaderComponent,
     DashboardComponent,
     ...APP_COMPONENTS,
-    DragDropDirective,Screen404Component
+    Screen404Component
   ],
   imports: [
     BrowserModule,

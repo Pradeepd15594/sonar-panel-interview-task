@@ -12,7 +12,7 @@ import { Router, Route } from '@angular/router';
 export class AuthenticationGuard implements CanLoad  {
   
     Roles:any=[];
-    userAuth:any=[];
+    userAuth:any={};
     parmsId:any=null;
     constructor(
         private authService: AuthService, 
@@ -23,7 +23,6 @@ export class AuthenticationGuard implements CanLoad  {
 
     ngOnInit() {
         let id = this._route.snapshot.params.id;
-        console.log(id);
     }
 
 
@@ -31,7 +30,7 @@ export class AuthenticationGuard implements CanLoad  {
         try {
             let auth=localStorage.getItem('@userSession');
             console.log(auth);
-            
+            this.userAuth={};
             if(auth!="" && auth!=undefined && auth !=null){
                 this.userAuth=JSON.parse((auth));
                 let role:any=JSON.parse(localStorage.getItem('@userRoles'));
@@ -66,15 +65,20 @@ export class AuthenticationGuard implements CanLoad  {
                     return false;
                 }
             return true;
+
+            case 'login':
+                if(this.userAuth?.userType){ 
+                    this.router.navigateByUrl("/dashboard");
+                    return false;
+                }
+            return true;
         }
-        //determine whether you want to load the module
-        //return true or false
      
         // return true; 
     }
 
 
-    // public CanLoad (route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<boolean>|boolean {
+    // public CanActive (route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<boolean>|boolean {
     //     this.setAuth();
     //     console.log(this.Roles, 'this.Roles',route.routeConfig.path);
     //     switch (route.routeConfig.path) {
