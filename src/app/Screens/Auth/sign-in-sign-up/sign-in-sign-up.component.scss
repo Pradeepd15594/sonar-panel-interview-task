@@ -85,3 +85,16 @@ mat-form-field{
 mat-error {
     font-size: 12px;
 }
+
+[user-type]{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    grid-gap: 15%;
+
+    mat-radio-button{
+        width: 100%;
+    }
+}

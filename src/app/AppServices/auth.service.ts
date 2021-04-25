@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpRequest } from '@angular/common/http';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute, RoutesRecognized} from '@angular/router';
 import{ env} from '../../environments/environment.prod';
 import { FormGroup ,FormControl} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 function urlSafeBase64Encode(text: string) {
   return btoa(text).replace(/[+/=]/g, m => {
@@ -64,7 +67,10 @@ export class AuthService {
   public messageSource = new BehaviorSubject<any>([]); 
   public shairedData:any=[];
 
-  constructor(private _router:Router) {
+  constructor(
+    private _router:Router, 
+    private _snackBar:MatSnackBar, 
+    public activatedRoute: ActivatedRoute) {
     this.shairedData=this.messageSource.asObservable();
 
     const data:any=(localStorage.getItem(env.Registration) ? JSON.parse(localStorage.getItem(env.Registration)) : []);
@@ -119,14 +125,38 @@ export class AuthService {
     return urlSafeBase64Decode(ciphertext);
   };
 
-  public navigateByUrl($uri){
-    this._router.navigateByUrl("/"+$uri);
+  /**@NAVIGATE_ */
+  navigateByUrl($uri:any, params:any){
+    console.log(typeof params, 'type of params');
+    let paramsUri=``;
+    if(Object.keys(params).length != 0){
+      paramsUri=`/${Object.keys(params).map(function(k){return params[k]}).join("/")}`;
+    }
+    
+    // let parems:any=(params);
+    this._router.navigateByUrl(`/${$uri}${paramsUri}`);
+  }
+
+  getParmsData():any{
+    return this.activatedRoute.firstChild.snapshot.params;
+  }
+
+  getUserList(mobile):any{
+    const data:any=(localStorage.getItem(env.Registration) ? JSON.parse(localStorage.getItem(env.Registration)) : [])
+    if(mobile && data.length>0){
+      for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+        if(element.mobile===mobile)
+        return element;
+      }
+
+    }else{
+      return data;
+    }
   }
 
 
-  getUserList():any{
-    return (localStorage.getItem(env.Registration) ? JSON.parse(localStorage.getItem(env.Registration)) : []);
-  }
+  
 
     
   /** @TOUCH_FORM_FIELDS */
@@ -139,6 +169,11 @@ export class AuthService {
         this.validateAllFormFields(control);       
       }
     });
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{ duration: 3000});
   }
 
 }

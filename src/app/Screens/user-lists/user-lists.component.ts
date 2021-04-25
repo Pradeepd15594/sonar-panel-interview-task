@@ -18,7 +18,7 @@ export class UserListsComponent implements OnInit {
   constructor(private authService:AuthService, private fb:FormBuilder, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.userListArray=this.authService.getUserList();
+    this.userListArray=this.authService.getUserList(null);
     this.userForm = this.fb.group({
       name: ['' ,[Validators.required]],
       email: ['' ,[Validators.required, Validators.pattern(`^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`)]],
@@ -63,7 +63,7 @@ export class UserListsComponent implements OnInit {
         this.isUpdate=false;
         setTimeout(() => {
           this.openSnackBar('Successfully user added','');
-        },2000)
+        },500)
         // console.log( this.authService.decryption(this.authService.encryption('admin@gmail.,`-com')),'dec');
       }
     }
@@ -93,7 +93,7 @@ export class UserListsComponent implements OnInit {
 
     openProfile(v){
       sessionStorage.setItem('userProfile', JSON.stringify(v));
-      this.authService.navigateByUrl('user-profile');
+      this.authService.navigateByUrl('user-profile',{mobile:v.mobile});
     }
 
 

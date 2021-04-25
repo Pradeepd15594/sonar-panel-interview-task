@@ -15,6 +15,7 @@ export class AppComponent {
   public isFullWindow:string = '';
   title = 'digital-dukaan';
   appModes:string = 'side'; //{'over' , 'side', 'rail'}
+  userProfile=JSON.parse(localStorage.getItem(env.authDB));
 
   constructor(public authService:AuthService){
     this.checkAuth();
@@ -34,8 +35,7 @@ export class AppComponent {
         }else if(authdata?.userType=='Admin'){
           that.authService.newSharedData(userRoles.admin, 'ADMIN_ROLE_BASED');
         }
-        
-      },3000)
+      },3000);
   }
 
   private checkAuth(){
@@ -45,7 +45,7 @@ export class AppComponent {
       this.isAuthenticated=true;
     }else{
       this.isAuthenticated=false;
-      this.authService.navigateByUrl('login');
+      this.authService.navigateByUrl('login',{});
       console.log('navigateByUrl(');
     }
   }
@@ -56,11 +56,12 @@ export class AppComponent {
       if(res.Type===`TOGGLE_POPUP_REQUEST`){
         that.isFullWindow=(res.data? 'full-width' : '');
       }else if(res.Type===`USER_LOGIN_SUCCESS`){
-        this.isAuthenticated=true;
+        that.isAuthenticated=true;
+        that.userProfile=JSON.parse(localStorage.getItem(env.authDB));
       }else if(res.Type===`USER_LOGOUT`){
         localStorage.removeItem('@userSession');
-        this.isAuthenticated=false;
-        this.authService.navigateByUrl('login');
+        that.isAuthenticated=false;
+        that.authService.navigateByUrl('login',{});
       }
     })
   }

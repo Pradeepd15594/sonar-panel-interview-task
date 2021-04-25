@@ -3,4 +3,5 @@ export const env = {
   baseUrl:``,
   Registration:`@registration`,
   authDB:`@userSession`,
+  defaultAppRedirectURI:`user-profile`
 };

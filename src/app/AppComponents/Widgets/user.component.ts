@@ -19,10 +19,6 @@ import{ env} from '../../../environments/environment.prod';
         <mat-icon>account_circle</mat-icon>
         <span>User Profile</span>
       </button>
-      <button routerLink="/profile/settings" mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span>user settings</span>
-      </button>
       <button mat-menu-item (click)="signOutUserAccount()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Logout</span>
@@ -32,7 +28,7 @@ import{ env} from '../../../environments/environment.prod';
 })
 export class UserWidgetComponent implements OnInit {
   user: any={
-    name:'Pradeep Dubey',
+    name:'Shubham Dubey',
     avatar:'../../assets/images/user.png',
   };
 
@@ -42,12 +38,15 @@ export class UserWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+    this.user=(localStorage.getItem(env.authDB) ? JSON.parse(localStorage.getItem(env.authDB)) : []);
+    this.user.avatar='../../assets/images/user.png';
   } 
 
   openProfile(){
-    sessionStorage.setItem(`userProfile`, localStorage.getItem(env.authDB))
-    this.auth.navigateByUrl('/user-profile')
+    const data:any=(localStorage.getItem(env.authDB) ? JSON.parse(localStorage.getItem(env.authDB)) : []);
+    if(data){
+      this.auth.navigateByUrl('/user-profile',{mobile:data.mobile});
+    }
   }
 
   

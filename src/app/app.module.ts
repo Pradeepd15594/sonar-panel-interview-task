@@ -20,11 +20,9 @@ const APP_COMPONENTS=[
 ]
 
 /**@AUTHENTICATION_COMPONENTS */
-import { DashboardComponent } from './Screens/Authentication/dashboard/dashboard.component';
+import { DashboardComponent } from './Screens/dashboard/dashboard.component';
 import { UserListsModule } from './Screens/user-lists/user-lists.module';
 import { SignInSignUpModule } from './Screens/Auth/sign-in-sign-up/sign-in-sign-up.module';
-
-// import { NumbersOnly } from './AppDirectives/numberOnly.directive';
 
 @NgModule({
   declarations: [

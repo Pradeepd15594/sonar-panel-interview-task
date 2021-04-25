@@ -33,7 +33,7 @@
                             <td>{{v?.userType}}</td>
                             <td>
                                 <button mat-icon-button (click)="edit(v,i)" ><mat-icon>edit</mat-icon></button>
-                                <button mat-icon-button *ngIf="v?.userType!='Admin' " (click)="deleteUser(i)" color="warn" ><mat-icon>delete</mat-icon></button>
+                                <button mat-icon-button *ngIf="i!=0" (click)="deleteUser(i)" color="warn" ><mat-icon>delete</mat-icon></button>
                             </td>
                         </tr>
                     </tbody>
@@ -44,7 +44,7 @@
 
 
       <popup [(visible)]="showDialog" [closable]="false">
-          <div class="container">
+          <div class="container" [style.min-height.px]="350">
                 <form method="post" [formGroup]="userForm" (ngSubmit)="onSubmit()" signUp-form autocomplete="off">
                 
                     <div class="row" [style.margin-top.px]="40">
@@ -52,7 +52,7 @@
                             <mat-form-field [style.font-size.px]="13" appearance="outline">
                                 <mat-label>Full Name*</mat-label>
                                 <input formControlName="name" matInput placeholder="Full Name">
-                                <mat-icon matPrefix>users</mat-icon>
+                                <mat-icon [style.color]="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched) ? 'var(--danger)' :'var(--primary)'" matPrefix>person</mat-icon>
         
                                 <mat-error *ngIf="userForm.controls['name'].status=='INVALID' && (userForm.controls['name'].dirty || userForm.controls['name'].touched)">
                                     <mat-error *ngIf="userForm.controls['name'].errors.required">This Field is required.</mat-error>
@@ -63,7 +63,7 @@
                             <mat-form-field [style.font-size.px]="13" appearance="outline">
                                 <mat-label>Email*</mat-label>
                                 <input formControlName="email" matInput placeholder="Email">
-                                <mat-icon matPrefix>email</mat-icon>
+                                <mat-icon [style.color]="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched) ? 'var(--danger)' :'var(--primary)'" matPrefix>email</mat-icon>
         
                                 <mat-error *ngIf="userForm.controls['email'].status=='INVALID' && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
                                     <mat-error *ngIf="userForm.controls['email'].errors.required">This Field is required.</mat-error>
@@ -75,7 +75,7 @@
                             <mat-form-field [style.font-size.px]="13" appearance="outline">
                                 <mat-label>Mobile*</mat-label>
                                 <input NumbersOnly maxlength="10" [allowDecimals]="false" [allowSign]="true" formControlName="mobile" matInput placeholder="Email">
-                                <mat-icon matPrefix>phone</mat-icon>
+                                <mat-icon [style.color]="userForm.controls['mobile'].invalid && (userForm.controls['mobile'].dirty || userForm.controls['mobile'].touched) ? 'var(--danger)' :'var(--primary)'" matPrefix>phone</mat-icon>
         
                                 <mat-error *ngIf="userForm.controls['mobile'].invalid && (userForm.controls['mobile'].dirty || userForm.controls['mobile'].touched)" class="form-field-error">
         
@@ -88,9 +88,10 @@
                             <mat-form-field [style.font-size.px]="13" appearance="outline">
                                 <mat-label>Password*</mat-label>
                                 <input matInput formControlName="password" placeholder="Full Name">
-                                <mat-icon [style.color]="'var(--primary)'" matPrefix>lock</mat-icon>
+                                <mat-icon [style.color]="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched) ? 'var(--danger)' :'var(--primary)'" matPrefix>lock</mat-icon>
                                 <mat-error *ngIf="userForm.controls['password'].status=='INVALID' && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
                                     <mat-error *ngIf="userForm.controls['password'].errors.required">This Field is required.</mat-error>
+                                    <mat-error *ngIf="userForm.controls['password'].errors.minlength && !userForm.controls['password'].errors.required">Password must be at least 10 digit</mat-error>
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -100,10 +101,11 @@
                                 <mat-label>User Type*</mat-label>
                                 <mat-select formControlName="userType">
                                     <mat-option value="">Select User Type</mat-option>
+                                    <mat-option value="Admin">Admin</mat-option>
                                     <mat-option value="Teacher">Teacher</mat-option>
                                     <mat-option value="Student">Student</mat-option>
                                 </mat-select>
-                                <mat-icon [style.color]="'var(--primary)'" matPrefix>account_tree</mat-icon>
+                                <mat-icon [style.color]="userForm.controls['userType'].invalid && (userForm.controls['userType'].dirty || userForm.controls['userType'].touched) ? 'var(--danger)' :'var(--primary)'" matPrefix>account_tree</mat-icon>
                                 <mat-error *ngIf="userForm.controls['userType'].status=='INVALID' && (userForm.controls['userType'].dirty || userForm.controls['userType'].touched)">
                                     <mat-error *ngIf="userForm.controls['userType'].errors.required">This Field is required.</mat-error>
                                 </mat-error>

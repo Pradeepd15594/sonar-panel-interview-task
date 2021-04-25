@@ -1,13 +1,37 @@
 [page-header]{
     display: block;
     padding: 16px;
-    margin: 15px;
-    background-color: var(--primary);
+    background-color: var(--light-green);
     color: #fff;
     min-height: 100px;
     h4{
         padding: 10px 15px;
         font-size: 18px;
+        font-family: 'Roboto-Regular';
+    }
+}
+
+[circle]{
+    text-align: center;
+    img{border-radius: 100px;}
+}
+
+[info-container]{
+    background: var(--extra-gray-light);
+    border-radius: 6px;
+    border-left: 5px solid var(--danger);
+    padding: 4px 10px;
+    border-bottom: 1px solid #b8b8b8;
+    
+
+    [title]{
+        font-size: 10px;
+        color: var(--danger);
+        font-family: 'Roboto-Bold';
+    }
+    [desc]{
+        font-size: 18px;
+        margin-bottom: 5px;
         font-family: 'Roboto-Regular';
     }
 }

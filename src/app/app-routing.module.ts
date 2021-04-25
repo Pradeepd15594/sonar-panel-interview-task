@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './Screens/Authentication/dashboard/dashboard.component';
+import { DashboardComponent } from './Screens/dashboard/dashboard.component';
 import {AuthenticationGuard} from './authentication.guard'; 
 import {Screen404Component} from './Screens/screen404/screen404.component'; 
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login',canLoad:[AuthenticationGuard], loadChildren: () => import('./Screens/Auth/sign-in-sign-up/sign-in-sign-up.module').then(m => m.SignInSignUpModule) },
   { path: 'user-lists',canLoad:[AuthenticationGuard], loadChildren: () => import('./Screens/user-lists/user-lists.module').then(m => m.UserListsModule) },
   { path: 'user-roles',canLoad:[AuthenticationGuard], loadChildren: () => import('./Screens/user-roles/user-roles.module').then(m => m.UserRolesModule) },
-  { path: 'user-profile', loadChildren: () => import('./Screens/user-profile/user-profile.module').then(m => m.UserProfileModule) },
+  { path: 'user-profile/:mobile', loadChildren: () => import('./Screens/user-profile/user-profile.module').then(m => m.UserProfileModule) },
 ];
 
 
